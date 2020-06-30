@@ -1,8 +1,8 @@
-<?php namespace CI4Xpander_Util;
+<?php namespace CI4Xpander\Util;
 
 trait PropertyInitializerTrait
 {
-    use \CI4Xpander_Util\ReflectionClassTrait, \CI4Xpander_Util\DocBlockTrait;
+    use \CI4Xpander\Util\ReflectionClassTrait, \CI4Xpander\Util\DocBlockTrait;
 
     protected function _initProperty()
     {

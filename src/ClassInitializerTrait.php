@@ -1,4 +1,4 @@
-<?php namespace CI4Xpander_Util;
+<?php namespace CI4Xpander\Util;
 
 trait ClassInitializerTrait
 {
