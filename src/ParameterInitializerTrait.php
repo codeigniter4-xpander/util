@@ -2,26 +2,30 @@
 
 trait ParameterInitializerTrait
 {
-    protected function _initParameter(...$params)
+    protected function _initParameter(...$parameters)
     {
-        if (count($params) == 1) {
-            if (is_array($params[0])) {
-                foreach ($params[0] as $name => $value) {
-                    $this->_setParam($name, $value);
+        if (count($parameters) == 1) {
+            if (is_array($parameters[0])) {
+                foreach ($parameters[0] as $name => $value) {
+                    $this->_setParameter($name, $value);
                 }
-            } elseif (is_object($params[0])) {
-                foreach (get_object_vars($params[0]) as $name => $value) {
-                    $this->_setParam($name, $value);
+            } elseif (is_object($parameters[0])) {
+                foreach (get_object_vars($parameters[0]) as $name => $value) {
+                    $this->_setParameter($name, $value);
                 }
+            } elseif (is_a($parameters[0], \CI4Xpander\Util\Parameter::class)) {
+                $this->_setParameter($parameters[0]->getName(), $parameters[0]->getValue());
             }
         } else {
-            foreach ($params as $param) {
-
+            foreach ($parameters as $parameter) {
+                if (is_a($parameter, \CI4Xpander\Util\Parameter::class)) {
+                    $this->_setParameter($parameter->getName(), $parameter->getValue());
+                }
             }
         }
     }
 
-    protected function _setParam($name = null, $value = null)
+    protected function _setParameter($name = null, $value = null)
     {
         if (!is_null($name)) {
             if (property_exists($this, $name)) {
